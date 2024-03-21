@@ -43,3 +43,24 @@ export const loadShopOrders = (token) => async (dispatch) => {
     });
   }
 };
+export const loadAllOrderAdmin = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "AdminLoadAllOrdersRequest",
+    });
+
+    const { data } = await axios.get(`${server}/admin/get-all-orders`, {
+      headers: { Authorization: token },
+    });
+    // console.log({ data }, "AdminLoad");
+    dispatch({
+      type: "AdminLoadAllOrdersSuccess",
+      payload: data.adminOrders,
+    });
+  } catch (error) {
+    dispatch({
+      type: "AdminLoadAllOrdersFail",
+      payload: error.response,
+    });
+  }
+};

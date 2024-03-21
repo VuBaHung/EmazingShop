@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
-const path = require("path");
 const User = require("../model/UserModel");
-const fs = require("fs-extra");
+const Shop = require("../model/OrderModel");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
+
 // const ErrorHandler = require(".././utils/ErrorHandler");
 const userCtrl = {
   createUser: async (req, res, next) => {
@@ -142,6 +142,29 @@ const userCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  getAllUser: async (req, res) => {
+    try {
+      const users = await User.find();
+      if (!users) return res.status(400).json({ msg: "User does not exist" });
+      res.json({ users });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  deleteUser: async (req, res) => {
+    try {
+      const id = req.params.id;
+      console.log({ id });
+      await User.findByIdAndDelete(id);
+      // await user.save();
+      res.status(201).json({
+        msg: "delete success",
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+
   getUserInfor: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);

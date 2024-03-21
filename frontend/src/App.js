@@ -34,12 +34,13 @@ import {
   ShopMessagesPage,
   InboxPage,
   AdminDashBoardPage,
+  AdminTrackOrderPage,
 } from "./Router";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
-import ShopActivationPage from "./pages/ShopActivationpage";
+import ShopActivationPage from "./pages/ShopPages/ShopActivationpage";
 import { useSelector } from "react-redux";
-import NotFoundPage from "./pages/NotFoundPage";
+import NotFoundPage from "./pages/CustomerPages/NotFoundPage";
 import { getAllEvents } from "./redux/actions/event";
 import { loadToken } from "./redux/actions/token";
 import { loadUserOrders } from "./redux/actions/order";
@@ -47,8 +48,12 @@ import axios from "axios";
 import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import OrderSuccessPage from "./pages/OrderSuccessPage";
-import OrderDetailPage from "./pages/OrderDetailPage";
+import OrderSuccessPage from "./pages/CustomerPages/OrderSuccessPage";
+import OrderDetailPage from "./pages/CustomerPages/OrderDetailPage";
+import AdminAllOrdersPage from "./pages/AdminPages/AdminAllOrdersPage";
+import AllSellersPage from "./pages/AdminPages/AllSellersPage";
+import AdminAllUserPage from "./pages/AdminPages/AdminAllUserPage";
+import AdminAllProductsPage from "./pages/AdminPages/AdminAllProductsPage";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -142,6 +147,42 @@ function App() {
         <Route
           path="/order/:id"
           element={isSeller ? <ShopOrderDetailPage /> : <ShopLoginPage />}
+        ></Route>
+        <Route
+          path="/admin/order/:id"
+          element={
+            role && role === "Admin" ? <AdminTrackOrderPage /> : <LoginPage />
+          }
+        ></Route>
+        <Route
+          path="/admin/preview/:id"
+          element={
+            role && role === "Admin" ? <AdminTrackOrderPage /> : <LoginPage />
+          }
+        ></Route>
+        <Route
+          path="/admin/dashboard-products"
+          element={
+            role && role === "Admin" ? <AdminAllProductsPage /> : <LoginPage />
+          }
+        ></Route>
+        <Route
+          path="/admin/dashboard-users"
+          element={
+            role && role === "Admin" ? <AdminAllUserPage /> : <LoginPage />
+          }
+        ></Route>
+        <Route
+          path="/admin/dashboard-orders"
+          element={
+            role && role === "Admin" ? <AdminAllOrdersPage /> : <LoginPage />
+          }
+        ></Route>
+        <Route
+          path="/admin/dashboard-sellers"
+          element={
+            role && role === "Admin" ? <AllSellersPage /> : <LoginPage />
+          }
         ></Route>
         <Route path="/shop/preview/:id" element={<ShopHomePage />}></Route>
         <Route

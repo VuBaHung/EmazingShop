@@ -1,46 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  deleteProductShop,
-  getAllProductsShop,
-} from "../../redux/actions/product";
+import { deleteProductShop, getAllProducts } from "../../redux/actions/product";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { DataGrid } from "@mui/x-data-grid";
 
 import NotFoundPage from "../../pages/CustomerPages/NotFoundPage";
-const AllProducts = () => {
-  const { products, isLoading } = useSelector((state) => state.product);
-  const { seller } = useSelector((state) => state.seller);
+import { toast } from "react-toastify";
+const AllProductsAdmin = () => {
+  const [load, setLoad] = useState(false);
+  const { allProducts, isLoading } = useSelector((state) => state.product);
+  const { token } = useSelector((state) => state.token);
   const handleDelele = (id, token) => {
-    // console.log({ id });
-
-    dispatch(deleteProductShop(id, token));
-
-    // window.location.assign("/dashboard-products");
-    window.location.reload();
+    const a = window.confirm("Do you want to delete this product?");
+    if (a) {
+      dispatch(deleteProductShop(id, token));
+      toast.success("Delete success!");
+      setLoad((prev) => !prev);
+    }
   };
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getAllProductsShop(seller[0]._id));
+    dispatch(getAllProducts(null));
   }, [dispatch]);
+  useEffect(() => {}, [load]);
 
   const columns = [
-    { field: "id", headerName: "Product Id", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "Product Id", minWidth: 150, flex: 1 },
     {
       field: "name",
       headerName: "Name",
       minWidth: 180,
-      flex: 1.4,
+      flex: 1,
     },
     {
       field: "price",
       headerName: "Price",
       minWidth: 100,
-      flex: 0.6,
+      flex: 0.2,
     },
     {
       field: "Stock",
@@ -55,18 +54,17 @@ const AllProducts = () => {
       headerName: "Sold out",
       type: "number",
       minWidth: 130,
-      flex: 0.6,
+      flex: 0.5,
     },
     {
       field: "Review",
       headerName: "Review",
-
       minWidth: 130,
-      flex: 0.6,
+      flex: 0.5,
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/product/${params.id}`}>
+            <Link to={`/products/${params.id}`}>
               <Button>
                 <AiOutlineEye size={20} />
               </Button>
@@ -78,13 +76,12 @@ const AllProducts = () => {
     {
       field: "Delelte",
       headerName: "Delete",
-      type: "number",
       minWidth: 130,
-      flex: 0.6,
+      flex: 0.5,
       renderCell: (params) => {
         return (
           <>
-            <Button onClick={() => handleDelele(params.id, seller[1])}>
+            <Button onClick={() => handleDelele(params.id, token)}>
               <AiOutlineDelete size={20} />
             </Button>
           </>
@@ -95,8 +92,8 @@ const AllProducts = () => {
 
   const row = [];
 
-  products &&
-    products.forEach((item) => {
+  allProducts &&
+    allProducts.forEach((item) => {
       row.push({
         id: item._id,
         name: item.name,
@@ -121,4 +118,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default AllProductsAdmin;

@@ -10,6 +10,7 @@ const couponRouter = require("./Routers/couponRouter");
 const uploadRouter = require("./Routers/uploadRouter");
 const uploadProductRouter = require("./Routers/uploadProductRouter");
 const paymentRouter = require("./Routers/paymentRouter");
+const adminRouter = require("./Routers/adminRouter");
 const orderRouter = require("./Routers/orderRouter");
 const chatRouter = require("./Routers/chatRouter");
 const fileUpload = require("express-fileupload");
@@ -33,6 +34,7 @@ app.use("/event", eventRouter);
 app.use("/coupon", couponRouter);
 app.use("/payment", paymentRouter, orderRouter);
 app.use("/chat", chatRouter);
+app.use("/admin", adminRouter);
 
 //////////////
 

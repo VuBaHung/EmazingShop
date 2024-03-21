@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import styles from "../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsShop } from "../../redux/actions/product";
-import NotFoundPage from "../../pages/NotFoundPage";
+import NotFoundPage from "../../pages/CustomerPages/NotFoundPage";
 import Ratings from "../Products/Rating";
 import { getAllEventsShop } from "../../redux/actions/event";
 

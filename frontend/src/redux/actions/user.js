@@ -23,26 +23,7 @@ export const loadUser = (token) => async (dispatch) => {
     });
   }
 };
-//Load Login user
-// export const loadUserInforAfterLogin = () => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: "LoadUserInforAfterLoginRequest",
-//     });
-//     const { data } = await axios.get("/user/get-user");
-//     console.log({ data });
-//     dispatch({
-//       type: "LoadUserInforAfterLoginSuccess",
-//       payload: data.user.newUser,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: "LoadUserInforAfterLoginFail",
-//       payload: error.response,
-//     });
-//   }
-// };
-//Load Seller
+
 export const loadSeller = () => async (dispatch) => {
   try {
     dispatch({
@@ -174,3 +155,23 @@ export const deleteUserAddress =
       });
     }
   };
+export const getAllSeller = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GetAllSellerRequest",
+    });
+    const { data } = await axios.get("/admin/get-all-sellers", {
+      headers: { Authorization: token },
+    });
+    // console.log({ data }, "Data");
+    dispatch({
+      type: "GetAllSellerSuccess",
+      payload: data.allSellers,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GetAllSellerFail",
+      payload: error.response,
+    });
+  }
+};

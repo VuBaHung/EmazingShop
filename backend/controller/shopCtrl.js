@@ -140,6 +140,14 @@ const shopCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  getSellerInfor: async (req, res) => {
+    try {
+      const seller = await Shop.findById(req.params.id).select("-password");
+      if (!seller) return res.status(400).json({ msg: "User does not exist" });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
   getAllShopOrders: async (req, res) => {
     try {
       // res.json(req.seller.newShop._id);
@@ -148,6 +156,17 @@ const shopCtrl = {
       }).sort({ createdAt: -1 });
       if (!orders) return res.status(400).json({ msg: "No order exist" });
       res.status(200).json({ orders });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  getAllShops: async (req, res) => {
+    try {
+      const allSellers = await Shop.find();
+
+      if (!allSellers)
+        return res.status(400).json({ msg: "sellers does not exist" });
+      res.json({ allSellers });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }

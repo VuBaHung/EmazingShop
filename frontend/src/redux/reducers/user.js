@@ -53,7 +53,18 @@ export const userReducer = createReducer(initialState, {
     state.deleteLoading = false;
     state.error = action.payload;
   },
-
+  //Get All sellers
+  GetAllSellerRequest: (state) => {
+    state.loading = true;
+  },
+  GetAllSellerSuccess: (state, action) => {
+    state.loading = false;
+    state.allSellers = action.payload;
+  },
+  GetAllSellerFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
   clearErrors: (state) => {
     state.error = null;
   },

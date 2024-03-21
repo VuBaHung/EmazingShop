@@ -5,7 +5,7 @@ import styles from "../../styles/styles";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
-import NotFoundPage from "../../pages/NotFoundPage";
+import NotFoundPage from "../../pages/CustomerPages/NotFoundPage";
 import { getAllProductsShop } from "../../redux/actions/product";
 
 const ShopPage = ({ isOwner }) => {

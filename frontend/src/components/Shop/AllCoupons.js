@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { DataGrid } from "@mui/x-data-grid";
 import styles from "../../styles/styles";
-import NotFoundPage from "../../pages/NotFoundPage";
+import NotFoundPage from "../../pages/CustomerPages/NotFoundPage";
 import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";

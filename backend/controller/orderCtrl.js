@@ -102,5 +102,17 @@ const orderCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  getAdminOrders: async (req, res) => {
+    try {
+      if (req.admin.newUser.role === "Admin") {
+        const adminOrders = await Order.find();
+        return res.status(201).json({ adminOrders });
+      } else {
+        return res.status(500).json({ msg: "access denied" });
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 module.exports = orderCtrl;

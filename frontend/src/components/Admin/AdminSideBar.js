@@ -49,11 +49,11 @@ const AdminSideBar = ({ active }) => {
         >
           <RiUserStarLine
             size={30}
-            color={`${active === 2 ? "crimson" : "#555"}`}
+            color={`${active === 3 ? "crimson" : "#555"}`}
           />
           <h5
             className={`pl-2 text-[18px] font-[400] ${
-              active === 2 ? "text-[crimson]" : "text-[#555]"
+              active === 3 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
             All Sellers
@@ -62,10 +62,10 @@ const AdminSideBar = ({ active }) => {
       </div>
       <div className="w-full flex items-center p-4">
         <Link to="/admin/dashboard-users" className="w-full flex items-center">
-          <FaUsers size={30} color={`${active === 2 ? "crimson" : "#555"}`} />
+          <FaUsers size={30} color={`${active === 4 ? "crimson" : "#555"}`} />
           <h5
             className={`pl-2 text-[18px] font-[400] ${
-              active === 2 ? "text-[crimson]" : "text-[#555]"
+              active === 4 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
             All Users
@@ -79,11 +79,11 @@ const AdminSideBar = ({ active }) => {
         >
           <TbBrandProducthunt
             size={30}
-            color={`${active === 3 ? "crimson" : "#555"}`}
+            color={`${active === 5 ? "crimson" : "#555"}`}
           />
           <h5
             className={`pl-2 text-[18px] font-[400] ${
-              active === 3 ? "text-[crimson]" : "text-[#555]"
+              active === 5 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
             All Products
@@ -95,11 +95,11 @@ const AdminSideBar = ({ active }) => {
         <Link to="/dashboard-events" className="w-full flex items-center">
           <SiEventbrite
             size={30}
-            color={`${active === 5 ? "crimson" : "#555"}`}
+            color={`${active === 6 ? "crimson" : "#555"}`}
           />
           <h5
             className={`pl-2 text-[18px] font-[400] ${
-              active === 5 ? "text-[crimson]" : "text-[#555]"
+              active === 6 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
             All Events
@@ -133,11 +133,11 @@ const AdminSideBar = ({ active }) => {
         >
           <CiSettings
             size={30}
-            color={`${active === 11 ? "crimson" : "#555"}`}
+            color={`${active === 8 ? "crimson" : "#555"}`}
           />
           <h5
             className={`pl-2 text-[18px] font-[400] ${
-              active === 11 ? "text-[crimson]" : "text-[#555]"
+              active === 8 ? "text-[crimson]" : "text-[#555]"
             }`}
           >
             Setting

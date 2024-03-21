@@ -1,33 +1,34 @@
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage.jsx";
-import ActivationPage from "./pages/ActivationPage.jsx";
-import Homepage from "./pages/Homepage";
-import ProductPages from "./pages/ProductPages.jsx";
-import BestSellingPage from "./pages/BestSellingPage.jsx";
-import EventPage from "./pages/EventPage.jsx";
-import FaqPage from "./pages/FaqPage.jsx";
-import TrackOrderPage from "./pages/TrackOrderPage.jsx";
-import PaymentPage from "./pages/PaymentPage.jsx";
-import ProductDetailPage from "./pages/ProductDetailPage.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
-import CheckoutPage from "./pages/CheckoutPage.jsx";
-import ShopCreatePage from "./pages/ShopCreatePage.jsx";
-import ShopLoginPage from "./pages/ShopLoginPage.jsx";
-import ShopHomePage from "./pages/ShopHomePage.jsx";
-import ShopDashBoardPage from "./pages/ShopDashBoardPage.jsx";
-import ShopCreateProductPage from "./pages/ShopCreateProductPage.jsx";
-import ShopAllProductPage from "./pages/ShopAllProductPage.jsx";
-import ShopEventPage from "./pages/ShopEventPage.jsx";
-import ShopCreateEventPage from "./pages/ShopCreateEventPage.jsx";
-import ShopAllCouponPage from "./pages/ShopAllCouponPage.jsx";
-import ShopAllOrdersPage from "./pages/ShopAllOrdersPage.jsx";
-import ShopOrderDetailPage from "./pages/ShopOrderDetailPage.jsx";
-import ShopRefundPage from "./pages/ShopRefundPage.jsx";
-import EditShopPage from "./pages/EditShopPage.jsx";
-import ShopWithdrawMoneyPage from "./pages/ShopWithdrawMoneyPage.jsx";
-import ShopMessagesPage from "./pages/ShopMessagesPage.jsx";
-import InboxPage from "./pages/InboxPage.jsx";
-import AdminDashBoardPage from "./pages/AdminDashBoardPage.jsx";
+import LoginPage from "./pages/CustomerPages/LoginPage.jsx";
+import SignUpPage from "./pages/CustomerPages/SignUpPage.jsx";
+import ActivationPage from "./pages/CustomerPages/ActivationPage.jsx";
+import Homepage from "./pages/CustomerPages/Homepage.jsx";
+import ProductPages from "./pages/CustomerPages/ProductPages.jsx";
+import BestSellingPage from "./pages/CustomerPages/BestSellingPage.jsx";
+import EventPage from "./pages/CustomerPages/EventPage.jsx";
+import FaqPage from "./pages/CustomerPages/FaqPage.jsx";
+import TrackOrderPage from "./pages/CustomerPages/TrackOrderPage.jsx";
+import PaymentPage from "./pages/CustomerPages/PaymentPage.jsx";
+import ProductDetailPage from "./pages/CustomerPages/ProductDetailPage.jsx";
+import ProfilePage from "./pages/CustomerPages/ProfilePage.jsx";
+import CheckoutPage from "./pages/CustomerPages/CheckoutPage.jsx";
+import ShopCreatePage from "./pages/ShopPages/ShopCreatePage.jsx";
+import ShopLoginPage from "./pages/ShopPages/ShopLoginPage.jsx";
+import ShopHomePage from "./pages/ShopPages/ShopHomePage.jsx";
+import ShopDashBoardPage from "./pages/ShopPages/ShopDashBoardPage.jsx";
+import ShopCreateProductPage from "./pages/ShopPages/ShopCreateProductPage.jsx";
+import ShopAllProductPage from "./pages/ShopPages/ShopAllProductPage.jsx";
+import ShopEventPage from "./pages/ShopPages/ShopEventPage.jsx";
+import ShopCreateEventPage from "./pages/ShopPages/ShopCreateEventPage.jsx";
+import ShopAllCouponPage from "./pages/ShopPages/ShopAllCouponPage.jsx";
+import ShopAllOrdersPage from "./pages/ShopPages/ShopAllOrdersPage.jsx";
+import ShopOrderDetailPage from "./pages/ShopPages/ShopOrderDetailPage.jsx";
+import ShopRefundPage from "./pages/ShopPages/ShopRefundPage.jsx";
+import EditShopPage from "./pages/ShopPages/EditShopPage.jsx";
+import ShopWithdrawMoneyPage from "./pages/ShopPages/ShopWithdrawMoneyPage.jsx";
+import ShopMessagesPage from "./pages/ShopPages/ShopMessagesPage.jsx";
+import InboxPage from "./pages/CustomerPages/InboxPage.jsx";
+import AdminDashBoardPage from "./pages/AdminPages/AdminDashBoardPage.jsx";
+import AdminTrackOrderPage from "./pages/AdminPages/AdminTrackOrderPage.jsx";
 export {
   LoginPage,
   SignUpPage,
@@ -59,4 +60,5 @@ export {
   ShopMessagesPage,
   InboxPage,
   AdminDashBoardPage,
+  AdminTrackOrderPage,
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../../styles/styles";
 import ProductCard from "../ProductCard/ProductCard.js";
 import { useSelector } from "react-redux";
-import NotFoundPage from "../../../pages/NotFoundPage.jsx";
+import NotFoundPage from "../../../pages/CustomerPages/NotFoundPage.jsx";
 
 const BestDeal = () => {
   const [data, setData] = useState([]);
