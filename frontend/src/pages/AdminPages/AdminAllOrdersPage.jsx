@@ -2,7 +2,6 @@ import React from "react";
 import AdminHeader from "../../components/Layout/AdminHeader.js";
 import AdminSideBar from "../../components/Admin/AdminSideBar";
 import AllOrderAdmin from "../../components/Admin/AllOrderAdmin";
-
 const AdminAllOrdersPage = () => {
   return (
     <div>

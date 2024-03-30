@@ -41,7 +41,13 @@ const Categories = () => {
                 <div
                   className="w-full h-[100px] flex items-center justify-between cursor-pointer overflow-hidden border-[1px] shadow-xl"
                   key={i.id}
-                  onClick={() => handleSubmit(i)}
+                  onClick={() =>
+                    handleSubmit(i) ||
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    })
+                  }
                 >
                   <h5 className={`text-[20px] leading-[1.3]`}>{i.title}</h5>
                   <img

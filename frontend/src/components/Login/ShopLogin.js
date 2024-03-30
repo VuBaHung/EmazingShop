@@ -5,8 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loadShopOrders } from "../../redux/actions/order";
+import { getAllProductsShop } from "../../redux/actions/product";
+
 const ShopLogin = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { seller } = useSelector((state) => state.seller);
   const [user, setUser] = useState({
     email: "",
     password: "",

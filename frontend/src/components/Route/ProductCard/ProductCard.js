@@ -16,7 +16,7 @@ import {
 } from "../../../redux/actions/wishlist.js";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProductCard = ({ data, reload, setReload }) => {
+const ProductCard = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [click, setClick] = useState(false);
   // const d = data.name;
@@ -43,17 +43,25 @@ const ProductCard = ({ data, reload, setReload }) => {
   return (
     <div className="w-full h-full bg-white rounded-lg shadow-sm p-3 relative cursor-pointer">
       <div>
-        <Link to={`/products/${data._id}`} onClick={() => setReload(!reload)}>
-          <img
-            src={`${data.images[0]}`}
-            alt=""
-            className="w-full h-[170px] object-contain"
-          />
+        <Link
+          to={`/products/${data._id}`}
+          className="flex items-center content-center"
+        >
+          <>
+            <img
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+              src={`${data.images[0]}`}
+              alt=""
+              className="w-full max-h-[180px] object-contain p-4"
+            />
+          </>
         </Link>
         <Link to={`/shop/preview/${data?.shopId}`}>
           <h5 className={`${styles.shop_name}`}> {data.shop.name}</h5>
         </Link>
-        <Link to={`/products/${data.name}`} onClick={() => setReload(!reload)}>
+        <Link to={`/products/${data.name}`}>
           <h4 className="pb-3 font-[500]">
             {data.name.length > 30 ? data.name.slice(0, 27) + "..." : data.name}{" "}
           </h4>

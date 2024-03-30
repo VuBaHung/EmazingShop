@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineMoneyCollect } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
@@ -8,26 +8,50 @@ import { loadShopOrders } from "../../redux/actions/order";
 import { getAllProductsShop } from "../../redux/actions/product";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import OrderChart from "./OrderChart";
+import DashBoardLineChart from "./DashBoardLineChart";
 
 const DashBoardMain = () => {
   const dispatch = useDispatch();
   const { shopOrders } = useSelector((state) => state.orders);
   const { seller } = useSelector((state) => state.seller);
   const { products } = useSelector((state) => state.product);
-  const [orderSuccess, setOrderSuccess] = useState([]);
+  const [total, setTotal] = useState([]);
+  const [ordersData, setOrdersData] = useState();
+  // const month =
+  //   shopOrders && shopOrders.map((order) => order.createdAt.slice(5, 7) * 1);
 
+  // const test = new Set(month);
+  // const months = [...test];
+  const totatEachMonth = useMemo(
+    function calculateAmount() {
+      const monthlyTotals = {};
+
+      shopOrders &&
+        shopOrders.forEach((order, index) => {
+          const monthYear = order.createdAt.slice(5, 7) * 1;
+          if (!monthlyTotals[monthYear]) {
+            monthlyTotals[monthYear] = 0;
+          }
+
+          monthlyTotals[monthYear] += order.totalPrice;
+        });
+      return monthlyTotals;
+    },
+    [shopOrders]
+  );
+  console.log({ totatEachMonth });
   useEffect(() => {
     dispatch(loadShopOrders(seller[1]));
     dispatch(getAllProductsShop(seller[0]._id));
     const orderedData =
       shopOrders && shopOrders.filter((order) => order.status === "Delivered");
-    setOrderSuccess(orderedData);
+    const totalEarnWithoutTax =
+      orderedData &&
+      orderedData.reduce((acc, order) => acc + order.totalPrice, 0);
+    const availableBalance = totalEarnWithoutTax && totalEarnWithoutTax * 0.1;
+    setTotal(availableBalance);
   }, [dispatch]);
-  const totalEarnWithoutTax =
-    orderSuccess &&
-    orderSuccess.reduce((acc, order) => acc + order.totalPrice, 0);
-  const availableBalance = totalEarnWithoutTax && totalEarnWithoutTax * 0.1;
-
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
 
@@ -109,7 +133,7 @@ const DashBoardMain = () => {
             </h3>
           </div>
           <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">
-            ${availableBalance ? availableBalance : 0}
+            ${total ? total : 0}
           </h5>
           <Link to="/dashboard-withdraw-money">
             <h5 className="pt-4 pl-[2] text-[#077f9c]">Withdraw Money</h5>
@@ -153,6 +177,14 @@ const DashBoardMain = () => {
             <h5 className="pt-4 pl-2 text-[#077f9c]">View Products</h5>
           </Link>
         </div>
+      </div>
+      <div className="w-[1000px] justify-center flex  ml-[250px] ">
+        {totatEachMonth && (
+          <DashBoardLineChart
+            ordersData={totatEachMonth}
+            name={"Account balance"}
+          />
+        )}
       </div>
       <br />
       <h3 className="text-[22px] font-Poppins pb-2">Latest Orders</h3>

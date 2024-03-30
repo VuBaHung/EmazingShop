@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "@mui/material";
@@ -7,7 +7,9 @@ import { AiOutlineArrowRight, AiOutlineDelete } from "react-icons/ai";
 import { DataGrid } from "@mui/x-data-grid";
 
 import { loadShopOrders } from "../../redux/actions/order";
+import OrderChart from "./OrderChart";
 const AllOders = () => {
+  const [ordersData, setOrdersData] = useState();
   const { seller } = useSelector((state) => state.seller);
   const { shopOrders } = useSelector((state) => state.orders);
   const handleDelele = (id, token) => {};
@@ -15,6 +17,7 @@ const AllOders = () => {
 
   useEffect(() => {
     seller && dispatch(loadShopOrders(seller[1]));
+    setOrdersData(Object.values(frequency));
   }, [dispatch]);
 
   const columns = [
@@ -69,6 +72,18 @@ const AllOders = () => {
   ];
 
   const row = [];
+  const month =
+    shopOrders && shopOrders.map((order) => order.createdAt.slice(5, 7) * 1);
+  const frequency = {};
+
+  month &&
+    month.forEach((element) => {
+      if (frequency[element]) {
+        frequency[element]++;
+      } else {
+        frequency[element] = 1;
+      }
+    });
 
   shopOrders &&
     shopOrders.forEach((item) => {
@@ -81,7 +96,16 @@ const AllOders = () => {
     });
 
   return (
-    <div className="w-full mx-8 pt-1 mt-10 bg-white">
+    <div className="w-full mx-5 pt-1 mt-5 bg-white">
+      <div className="w-[1000px] justify-center flex  ml-[250px] ">
+        <OrderChart
+          ordersData={ordersData}
+          name={"Orders"}
+          precision={0}
+          type={"Bar"}
+        />
+      </div>
+      <h3 className="text-[22px] font-Poppins pb-2"> Orders</h3>
       <DataGrid
         rows={row}
         columns={columns}

@@ -27,10 +27,11 @@ const ProductPage = () => {
       setData(d);
     } else {
       const d =
-        allProducts && allProducts.filter((i) => i.category === categoryData);
+        allProducts &&
+        allProducts.filter((i) => i.category + "" === categoryData);
       setData(d);
     }
-  }, [allProducts]);
+  }, [allProducts, categoryData]);
   return (
     <div>
       <Header activeHeading={3} />

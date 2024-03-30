@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
-import { RxCross1 } from "react-icons/rx";
 
 import {
   AiFillHeart,
@@ -23,18 +22,15 @@ import { server } from "../../server";
 const ProductDetails = ({ data }) => {
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
-  const [open, setOpen] = useState(false);
   const [select, setSelect] = useState(0);
-  const navigate = useNavigate();
-
   const { products, isLoading } = useSelector((state) => state.product);
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
-  useEffect(() => {
+  useCallback(() => {
     dispatch(getAllProductsShop(data && data[0].shopId));
-  }, [data]);
+  }, [dispatch, data]);
   const dataArr = Object.values(data);
   // console.log(data[0]);
   const decrementCount = () => {
@@ -61,6 +57,7 @@ const ProductDetails = ({ data }) => {
     }
   };
   console.log(dataArr[0]);
+
   const handleMessage = async () => {
     if (isAuthenticated) {
       const userId = user._id;
@@ -110,7 +107,7 @@ const ProductDetails = ({ data }) => {
                 <img
                   src={`${dataArr[0] && dataArr[0].images[select]}`}
                   alt=""
-                  className="w-auto max-h-[700px]"
+                  className="w-[500px] h-[600px] object-contain"
                 />
                 <div className="w-full flex">
                   {dataArr[0].images.map((i, index) => (
@@ -123,7 +120,7 @@ const ProductDetails = ({ data }) => {
                       <img
                         src={`${i}`}
                         alt=""
-                        className="h-[200px] overflow-hidden mr-3 mt-3"
+                        className="h-[100px] w-auto overflow-hidden m-3 mt-3"
                         onClick={() => setSelect(index)}
                       />
                     </div>
@@ -151,7 +148,7 @@ const ProductDetails = ({ data }) => {
                     >
                       -
                     </button>
-                    <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[9px]">
+                    <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[9px] ">
                       {count}
                     </span>
                     <button

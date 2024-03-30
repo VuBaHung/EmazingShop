@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "../../../styles/styles";
-// import { productData } from "../../../static/data";
 import ProductCard from "../ProductCard/ProductCard";
 import { useSelector } from "react-redux";
-import axios from "axios";
-import { server } from "../../../server";
+
 import Store from "../../../redux/store";
 import { getAllProducts } from "../../../redux/actions/product";
+import { useRef } from "react";
 
 const FeatureProduct = () => {
   const [limit, setLimit] = useState(10);
-  const { allProducts } = useSelector((state) => state.product);
 
-  useEffect(() => {
-    Store.dispatch(getAllProducts(limit));
+  const { allProducts } = useSelector((state) => state.product);
+  useMemo(() => {
+    return Store.dispatch(getAllProducts(limit));
   }, [limit]);
 
   return (
@@ -30,7 +29,7 @@ const FeatureProduct = () => {
 
       <div
         className={`w-[150px] bg-[#73a7af] h-[50px] my-3 flex items-center justify-center rounded-xl cursor-pointer ml-[50%]`}
-        onClick={() => setLimit(limit + 10)}
+        onClick={() => setLimit((pre) => (pre += 10))}
       >
         Show More
       </div>

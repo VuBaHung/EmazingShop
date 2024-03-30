@@ -23,7 +23,7 @@ const AllProductsAdmin = () => {
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts(null));
+    dispatch(getAllProducts(50));
   }, [dispatch]);
   useEffect(() => {}, [load]);
 
