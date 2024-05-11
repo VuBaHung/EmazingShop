@@ -21,13 +21,13 @@ const AllOders = () => {
   }, [dispatch]);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 1 },
 
     {
       field: "status",
       headerName: "Status",
       minWidth: 130,
-      flex: 0.7,
+      flex: 1,
       cellClassName: (params) => {
         return params.api.getCellValue(params.id, "status") === "Delivered"
           ? "greenColor"
@@ -39,7 +39,7 @@ const AllOders = () => {
       headerName: "Items Qty",
       type: "number",
       minWidth: 130,
-      flex: 0.7,
+      flex: 0.3,
     },
 
     {
@@ -47,12 +47,18 @@ const AllOders = () => {
       headerName: "Total",
       type: "number",
       minWidth: 130,
-      flex: 0.8,
+      flex: 0.5,
     },
-
+    {
+      field: "date",
+      headerName: "Created at",
+      type: "string",
+      minWidth: 130,
+      flex: 1,
+    },
     {
       field: " ",
-      flex: 1,
+      flex: 0.3,
       minWidth: 150,
       headerName: "",
       type: "number",
@@ -84,13 +90,14 @@ const AllOders = () => {
         frequency[element] = 1;
       }
     });
-
+  console.log({ shopOrders });
   shopOrders &&
     shopOrders.forEach((item) => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
         total: "US$ " + item.totalPrice,
+        date: item.createdAt.slice(0, 7) + "-" + item.createdAt.slice(11, 16),
         status: item.status,
       });
     });

@@ -8,10 +8,11 @@ const EventPage = () => {
   return (
     <div>
       <Header activeHeading={4} />
-      <div className="pt-[30px]">
-        {" "}
+      <div className="pt-[30px] py-[80px]">
         {allEvents ? (
-          <EventCard data={allEvents[0]} active={true} />
+          allEvents.map((event) => (
+            <EventCard data={event} key={event._id} active={false} />
+          ))
         ) : (
           <p>There are no event now!</p>
         )}

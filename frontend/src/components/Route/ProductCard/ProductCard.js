@@ -30,7 +30,7 @@ const ProductCard = ({ data }) => {
     } else {
       setClick(false);
     }
-  }, [wishlist]);
+  }, [wishlist, data._id]);
   const removeItemFromWishlistHandle = (data) => {
     setClick(!click);
     dispatch(removeFromWishlist(data));
@@ -59,9 +59,9 @@ const ProductCard = ({ data }) => {
           </>
         </Link>
         <Link to={`/shop/preview/${data?.shopId}`}>
-          <h5 className={`${styles.shop_name}`}> {data.shop.name}</h5>
+          <h5 className={`${styles.shop_name} font-bold`}>{data.shop.name}</h5>
         </Link>
-        <Link to={`/products/${data.name}`}>
+        <Link to={`/products/${data._id}`}>
           <h4 className="pb-3 font-[500]">
             {data.name.length > 30 ? data.name.slice(0, 27) + "..." : data.name}{" "}
           </h4>

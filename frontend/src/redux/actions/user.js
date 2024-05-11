@@ -74,8 +74,9 @@ export const updateUserAddress =
 
 //Use Update Infor
 export const updateUserInfor =
-  (name, phoneNumber, email, password, images) => async (dispatch) => {
+  (name, phoneNumber, email, images) => async (dispatch) => {
     try {
+      console.log(name, phoneNumber, email, images);
       dispatch({
         type: "updateUserInfoRequest",
       });
@@ -84,11 +85,10 @@ export const updateUserInfor =
           name,
           phoneNumber,
           email,
-          password,
           images,
         })
         .catch((err) => console.log(err));
-      console.log(res);
+      console.log({ res });
       dispatch({
         type: "updateUserInfoSuccess",
         payload: res.data.user,

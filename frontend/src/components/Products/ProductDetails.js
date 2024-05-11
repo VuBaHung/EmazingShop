@@ -200,7 +200,7 @@ const ProductDetails = ({ data }) => {
                         {dataArr[0].shop.name}
                       </h3>
                       <h5 className="pb-3 text-[15px]">
-                        Ratings: {totalRatings}/5
+                        Ratings: {evarageRatingShop}/5
                       </h5>
                     </Link>
                   </div>

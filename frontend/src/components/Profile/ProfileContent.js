@@ -30,7 +30,7 @@ function ProfileContent({ active }) {
   const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
   const [password, setPassword] = useState(user && user.password);
   const [images, setImages] = useState("");
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -39,9 +39,7 @@ function ProfileContent({ active }) {
     if (addressLoading === true) {
       toast.success("Update success!");
     }
-  }, [error]);
-
-  const dispatch = useDispatch();
+  }, [error, dispatch]);
 
   const onChangeAvatar = async (e) => {
     e.preventDefault();
@@ -69,7 +67,7 @@ function ProfileContent({ active }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(updateUserInfor(name, phoneNumber, email, password, images));
+      dispatch(updateUserInfor(name, phoneNumber, email, images));
     } catch (error) {
       toast.error(error.response.data.msg);
     }
@@ -137,7 +135,7 @@ function ProfileContent({ active }) {
                   />
                 </div>
 
-                <div className=" w-[100%] 800px:w-[50%]">
+                {/* <div className=" w-[100%] 800px:w-[50%]">
                   <label className="block pb-2">Enter your password</label>
                   <input
                     type="password"
@@ -146,7 +144,7 @@ function ProfileContent({ active }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                </div>
+                </div> */}
               </div>
               <div className="w-full 800px:flex block pb-3"></div>
               <input

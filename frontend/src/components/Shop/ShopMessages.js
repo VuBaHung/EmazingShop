@@ -36,26 +36,13 @@ const ShopMessages = () => {
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
+  // Get conversation
   useEffect(() => {
     const messageList = axios
       .get(`${server}/chat/get-all-seller-conversation/${seller[0]._id}`)
       .then((res) => setConversation(res.data.conversation))
       .catch((err) => console.log(err));
   }, []);
-  useEffect(() => {
-    if (seller) {
-      const userId = seller[0]._id;
-      socketId.emit("addUser", userId);
-      socketId.on("getUsers", (data) => {
-        setOnlineUsers(data);
-      });
-    }
-  }, [seller]);
-  const onlineCheck = (chat) => {
-    const chatMembers = chat.members.find((member) => member !== seller[0]._id);
-    const online = onlineUsers.find((user) => user.userId === chatMembers);
-    online ? setActiveStatus(true) : setActiveStatus(false);
-  };
   //getMessages
   useEffect(() => {
     const getMessage = async () => {
@@ -71,6 +58,21 @@ const ShopMessages = () => {
     };
     getMessage();
   }, [currentChat]);
+  //step 1: get userID and socketId from server
+  useEffect(() => {
+    if (seller) {
+      const userId = seller[0]._id;
+      socketId.emit("addUser", userId);
+      socketId.on("getUsers", (data) => {
+        setOnlineUsers(data);
+      });
+    }
+  }, [seller]);
+  const onlineCheck = (chat) => {
+    const chatMembers = chat.members.find((member) => member !== seller[0]._id);
+    const online = onlineUsers.find((user) => user.userId === chatMembers);
+    online ? setActiveStatus(true) : setActiveStatus(false);
+  };
 
   //createNewMessages
   const sendMessageHandler = async (e) => {

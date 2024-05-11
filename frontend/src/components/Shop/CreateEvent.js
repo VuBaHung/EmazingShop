@@ -14,7 +14,7 @@ const CreateEvent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -39,21 +39,20 @@ const CreateEvent = () => {
   const onChangeAvatar = async (e) => {
     e.preventDefault();
     try {
-      const file = e.target.files[0];
-      if (!file) return alert("File not exist");
-      if (file.size > 1024 * 1024) return alert("Size too large");
-      if (file.type !== "image/jpeg" && file.type !== "image/png")
-        return alert("File format is incorrect");
+      const files = Array.from(e.target.files);
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("images", files);
+      const res = await axios.post(
+        "http://localhost:8000/product/upload",
+        files,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-      const res = await axios.post(`${server}/product/upload`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      setImages(res.data);
+      setImages(res.data.uploadedImages);
     } catch (error) {
       alert(error.response.data.msg);
     }
@@ -80,25 +79,10 @@ const CreateEvent = () => {
     ? new Date(new Date(startDate).getTime() + 3 * 24 * 60 * 60 * 1000)
         .toISOString()
         .slice(0, 10)
-    : // .toISOString()
-      // .slice(0, 10)
-      today;
+    : today;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const formData = new FormData();
-    // images.forEach((image) => {
-    //   formData.append("images", image);
-    // });
-    // formData.append("name", name);
-    // formData.append("description", description);
-    // formData.append("category", category);
-    // formData.append("tags", tags);
-    // formData.append("originalPrice", originalPrice);
-    // formData.append("discountPrice", discountPrice);
-    // formData.append("stock", stock);
-    // formData.append("shopId", seller[0]._id);
     dispatch(
       createEvent({
         name,
@@ -111,16 +95,11 @@ const CreateEvent = () => {
         shopId: seller[0]._id,
         startDate,
         endDate,
-        images: images.url,
+        images: images,
       })
     );
   };
 
-  const handleImageChange = (e) => {
-    e.preventDefault();
-    const files = Array.from(e.target.files);
-    setImages((preImg) => [...preImg, ...files]);
-  };
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
       <h5 className="text-[30px] font-Poppins text-center">Create Event</h5>
@@ -274,15 +253,23 @@ const CreateEvent = () => {
             id="upload"
             className="hidden"
             multiple
-            onChange={handleImageChange}
+            // onChange={handleImageChange}
           />
           <div className="w-full flex items-center flex-wrap">
             <label htmlFor="upload">
-              <AiOutlinePlusCircle
-                size={30}
-                className="mt-3 cursor-pointer"
-                color="#555"
-              />
+              {images ? (
+                <img
+                  src={images[0]}
+                  alt=""
+                  className="h-[100px] w-[100px] !object-cover m-2 border-[1px]"
+                />
+              ) : (
+                <AiOutlinePlusCircle
+                  size={30}
+                  className="mt-3 cursor-pointer"
+                  color="#555"
+                />
+              )}
             </label>
             <label
               htmlFor="file-input"

@@ -2,43 +2,26 @@ import axios from "axios";
 import { server } from "../.././server";
 import { toast } from "react-toastify";
 // create Event
-export const createEvent =
-  (
-    name,
-    description,
-    category,
-    tags,
-    originalPrice,
-    discountPrice,
-    stock,
-    shopId,
-    images
-  ) =>
-  async (dispatch) => {
-    console.log({ name });
-    const img = [];
-    name.images.forEach((imge) => {
-      img.push(URL.createObjectURL(imge));
+export const createEvent = (name) => async (dispatch) => {
+  console.log({ name });
+  try {
+    dispatch({
+      type: "EventCreateRequest",
     });
-    name.images = img;
-    try {
-      dispatch({
-        type: "EventCreateRequest",
-      });
 
-      const { data } = await axios.post(`${server}/event/create-event`, name);
-      console.log({ data });
-      dispatch({
-        type: "EventCreateSuccess",
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: "EventCreateFail",
-        payload: error.response,
-      });
-    }
-  };
+    const { data } = await axios.post(`${server}/event/create-event`, name);
+    console.log({ data });
+    dispatch({
+      type: "EventCreateSuccess",
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "EventCreateFail",
+      payload: error.response,
+    });
+  }
+};
 // get All Events of a shop
 export const getAllEventsShop = (id) => async (dispatch) => {
   try {

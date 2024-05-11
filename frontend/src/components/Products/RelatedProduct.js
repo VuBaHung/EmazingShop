@@ -39,6 +39,8 @@ function RelatedProduct({ data }) {
           </div>
         </div>
       ) : null}
+      Collabrative Filtering
+      <div></div>
     </div>
   );
 }

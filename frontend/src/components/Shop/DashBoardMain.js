@@ -1,14 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineMoneyCollect } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { MdBorderClear } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { loadShopOrders } from "../../redux/actions/order";
-import { getAllProductsShop } from "../../redux/actions/product";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import OrderChart from "./OrderChart";
 import DashBoardLineChart from "./DashBoardLineChart";
 
 const DashBoardMain = () => {
@@ -17,12 +15,11 @@ const DashBoardMain = () => {
   const { seller } = useSelector((state) => state.seller);
   const { products } = useSelector((state) => state.product);
   const [total, setTotal] = useState([]);
-  const [ordersData, setOrdersData] = useState();
-  // const month =
-  //   shopOrders && shopOrders.map((order) => order.createdAt.slice(5, 7) * 1);
 
-  // const test = new Set(month);
-  // const months = [...test];
+  useEffect(() => {
+    seller && dispatch(loadShopOrders(seller[1]));
+    seller && dispatch(loadShopOrders(seller[0]._id));
+  }, [dispatch, seller]);
   const totatEachMonth = useMemo(
     function calculateAmount() {
       const monthlyTotals = {};
@@ -41,17 +38,16 @@ const DashBoardMain = () => {
     [shopOrders]
   );
   console.log({ totatEachMonth });
+
   useEffect(() => {
-    dispatch(loadShopOrders(seller[1]));
-    dispatch(getAllProductsShop(seller[0]._id));
     const orderedData =
       shopOrders && shopOrders.filter((order) => order.status === "Delivered");
     const totalEarnWithoutTax =
       orderedData &&
       orderedData.reduce((acc, order) => acc + order.totalPrice, 0);
     const availableBalance = totalEarnWithoutTax && totalEarnWithoutTax * 0.1;
-    setTotal(availableBalance);
-  }, [dispatch]);
+    availableBalance && setTotal(availableBalance.toFixed(3));
+  }, [shopOrders]);
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
 

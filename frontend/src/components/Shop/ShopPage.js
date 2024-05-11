@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { server } from "../../server";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../styles/styles";
@@ -16,15 +16,15 @@ const ShopPage = ({ isOwner }) => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  useEffect(() => {
+  useCallback(() => {
     dispatch(getAllProductsShop(id));
-  }, [id]);
+  }, [id, dispatch]);
   useEffect(() => {
     axios
       .get(`${server}/shop/get-shop/${id}`)
       .then((res) => setData(res.data.shop))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const totaReviewsShop =
     products &&
@@ -37,6 +37,7 @@ const ShopPage = ({ isOwner }) => {
       0
     );
   const evarageRatingShop = totalRatings / totaReviewsShop || 0;
+
   const logOutHandler = async () => {
     await axios
       .get("/shop/logout")

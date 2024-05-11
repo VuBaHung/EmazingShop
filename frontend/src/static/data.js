@@ -103,6 +103,18 @@ export const brandingData = [
     ),
   },
   {
+    id: 3,
+    title: "Discount coupon",
+    Description: "Discount to 50% ",
+    icon: (
+      <img
+        className="h-[40px] w-auto"
+        src="https://cf.shopee.vn/file/vn-50009109-8a387d78a7ad954ec489d3ef9abd60b4_xhdpi"
+        alt=""
+      />
+    ),
+  },
+  {
     id: 4,
     title: "Affortable Prices",
     Description: "Get Factory direct price",
@@ -185,6 +197,18 @@ export const brandingData = [
       </svg>
     ),
   },
+  {
+    id: 5,
+    title: "International",
+    Description: "Globaly delivering",
+    icon: (
+      <img
+        className="w-auto h-[40px]"
+        src="https://cf.shopee.vn/file/a08ab28962514a626195ef0415411585_xhdpi"
+        alt=""
+      />
+    ),
+  },
 ];
 
 // categories data
@@ -201,49 +225,49 @@ export const categoriesData = [
     title: "Cosmetics",
     subTitle: "",
     image_Url:
-      "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
+      "https://down-vn.img.susercontent.com/file/ef1f336ecc6f97b790d5aae9916dcb72_tn",
   },
   {
     id: 3,
     title: "Accesories",
     subTitle: "",
     image_Url:
-      "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
+      "https://down-vn.img.susercontent.com/file/86c294aae72ca1db5f541790f7796260_tn",
   },
   {
     id: 4,
     title: "Cloths",
     subTitle: "",
     image_Url:
-      "https://www.shift4shop.com/2015/images/industries/clothing/clothing-apparel.png",
+      "https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b_tn",
   },
   {
     id: 5,
     title: "Electronics",
     subTitle: "",
     image_Url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvBQPQMVNRd6TtDkGs2dCri0Y-rxKkFOiEWw&usqp=CAU",
+      "https://down-vn.img.susercontent.com/file/978b9e4cb61c611aaaf58664fae133c5_tn",
   },
   {
     id: 6,
     title: "Books",
     subTitle: "",
     image_Url:
-      "https://img.freepik.com/free-photo/3d-render-blue-gift-box-with-ribbon-male-package_107791-16197.jpg",
+      "https://down-vn.img.susercontent.com/file/36013311815c55d303b0e6c62d6a8139_tn",
   },
   {
     id: 7,
     title: "Home and Kitchen",
     subTitle: "",
     image_Url:
-      "https://searchspring.com/wp-content/uploads/2022/10/Hero-Image-Platform-Others-2.png",
+      "https://down-vn.img.susercontent.com/file/24b194a695ea59d384768b7b471d563f_tn",
   },
   {
     id: 8,
     title: "Mobile and Tablets",
     subTitle: "",
     image_Url:
-      "https://st-troy.mncdn.com/mnresize/1500/1500/Content/media/ProductImg/original/mpwp3tua-apple-iphone-14-256gb-mavi-mpwp3tua-637986832343472449.jpg",
+      "https://down-vn.img.susercontent.com/file/31234a27876fb89cd522d7e3db1ba5ca_tn",
   },
 
   {
@@ -251,14 +275,14 @@ export const categoriesData = [
     title: "Baby",
     subTitle: "",
     image_Url:
-      "https://static.vecteezy.com/system/resources/previews/011/996/555/original/3d-black-headphone-illustration-ecommerce-icon-png.png",
+      "https://down-vn.img.susercontent.com/file/099edde1ab31df35bc255912bab54a5e_tn",
   },
   {
     id: 11,
     title: "Others",
     subTitle: "",
     image_Url:
-      "https://searchspring.com/wp-content/uploads/2022/10/Hero-Image-Platform-Others-2.png",
+      "https://down-vn.img.susercontent.com/file/e4fbccba5e1189d1141b9d6188af79c0_tn",
   },
 ];
 

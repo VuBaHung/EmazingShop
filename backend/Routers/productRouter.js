@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const productCtrl = require("../controller/productCtrl");
+// const collabrative = require("../controller/collabrativeFilter");
 const authSeller = require("../middleware/authSeller");
 const auth = require("../middleware/auth");
 router.post("/create-product", productCtrl.createProduct);
@@ -12,5 +13,5 @@ router.delete(
   productCtrl.deteleShopProduct
 );
 router.put("/update-product-review", auth, productCtrl.updateProductReview);
-
+// router.get("/get-cf", collabrative.getRecommendationsForUser);
 module.exports = router;

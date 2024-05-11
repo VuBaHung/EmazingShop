@@ -55,6 +55,18 @@ const TrendingProducts = ({ ordersData }) => {
           precision: 0,
         },
       },
+      x: {
+        ticks: {
+          callback: function (value) {
+            // truncate the labels only in this axis
+            const lbl = this.getLabelForValue(value);
+            if (typeof lbl === "string" && lbl.length > 10) {
+              return `${lbl.substring(0, 10)}...`;
+            }
+            return lbl;
+          },
+        },
+      },
     },
   };
 

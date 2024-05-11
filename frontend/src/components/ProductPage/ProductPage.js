@@ -12,7 +12,7 @@ const ProductPage = () => {
   const [searchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const categoryData = searchParams.get("category");
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(100);
   const { allProducts } = useSelector((state) => state.product);
 
   useEffect(() => {

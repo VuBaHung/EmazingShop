@@ -12,8 +12,8 @@ const Categories = () => {
         >
           {brandingData &&
             brandingData.map((i, index) => (
-              <div classsme="flex items-start" key={index}>
-                {i.icon}
+              <div classsme="flex items-center text-center" key={index}>
+                <div>{i.icon}</div>
                 <div className="px-3">
                   <h3 className="font-bold text-sm md:text-base">{i.title}</h3>
                   <p className="text-xs md:text-sm">{i.Description}</p>

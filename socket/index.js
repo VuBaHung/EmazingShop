@@ -8,9 +8,7 @@ const io = socketIO(server);
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
-// app.get("/", (req, res) => {
-//   res.send("Hello world");
-// });
+
 let users = [];
 const addUser = (userId, socketId) => {
   !users.some((user) => user.userId === userId) &&

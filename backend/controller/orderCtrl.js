@@ -63,7 +63,7 @@ const orderCtrl = {
         product.sold_out += qty;
         await product.save();
       };
-      if (req.body.status === "Transferred to delivery partner") {
+      if (req.body.status !== "Processing") {
         order.cart.forEach(
           async (item) => await updateProduct(item._id, item.qty)
         );

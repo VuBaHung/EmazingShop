@@ -176,30 +176,21 @@ const userCtrl = {
   },
   updateUser: async (req, res) => {
     try {
-      const { name, phoneNumber, email, password, images } = req.body;
+      const { name, phoneNumber, email, images } = req.body;
 
       const user = await User.findOne({
         email: email,
-      }).select("+password");
-      if (!user) return res.status(400).json({ msg: "User not found" });
-      bcrypt.compare(password, user.password, async (err, isMatch) => {
-        if (isMatch) {
-          user.email = email;
-          user.phoneNumber = phoneNumber;
-          user.name = name;
-          if (images) {
-            user.avatar = images.url;
-          }
-
-          await user.save();
-          res.status(201).json({
-            success: true,
-            user,
-          });
-        } else {
-          res.json({ msg: "Your password is not correct" });
-        }
       });
+      if (!user) return res.status(400).json({ msg: "User not found" });
+
+      user.email = email;
+      user.phoneNumber = phoneNumber;
+      user.name = name;
+      if (images) {
+        user.avatar = images.url;
+      }
+      await user.save();
+      res.status(201).json({ msg: "Update Success" });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }
